@@ -1,0 +1,27 @@
+.links{
+    font-size: 100;
+  font-family: sans-serif;
+  right: 50%;
+  margin-bottom: 50%;
+  line-height: 27px;
+    border-radius: 6px;
+    color: white;
+    padding: 3px 5px;
+    border: 1px  black;
+    float: none;
+    box-sizing: border-box;
+    display: inline-width;
+  text-decoration: none;
+}
+.heads{
+    background-color: wheat;
+}
+span.nav {
+    padding-left: 80px;
+}
+.heading{
+    background-color: black;
+    padding-bottom: 100;
+    position: relative;
+    margin: 0;
+  }

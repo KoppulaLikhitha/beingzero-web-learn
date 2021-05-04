@@ -1,7 +1,7 @@
 .fon{
-font-size: xx-large;
-font: large;
-font-weight: bold;
+   shape-image-threshold: initial;
+   size: 50%;
+
 }
 
 .search{
