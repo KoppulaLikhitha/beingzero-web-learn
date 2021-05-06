@@ -1,0 +1,19 @@
+
+div
+{
+    margin-bottom: 10px;
+}
+label{
+    font-size: large;
+    display: inline-block;
+width: 150px;
+}
+section{
+    width: 40%;
+    background-color: bisque;
+    margin: 10px 5px;
+    margin-left: 15px;padding: 40px 20px 20px;
+    transform: none;
+     text-align: center;
+     
+}

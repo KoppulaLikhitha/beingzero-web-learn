@@ -8,41 +8,20 @@
 </head>
 <body>
     
-    <text  style="background-color: orange; padding-left: 10%;"> RGB  -  <span id="cli"></span> </text>
-    
+   <div>
+      <h2>Color Picker</h2>
+   </div>
+ 
+ <p id="pcolor"></p>
+ <p><input type="range" oninput="colorChange()" min="0" max="255" value="20" id="rs" step="2">Red</p>
+<p id="rv">Value : 10</p>
 
-   <br>
-    <centre>
-    <div style="display:inline-table">
-        <centre>
-    <h4>RED</h4>
-    
-            <input type="range" id="val" value="50">
-    </centre>
-            <br>
-           <p><span id="demo"></span></p>
-        </div>
+ <p><input type="range" oninput="colorChange()" min="0" max="255" value="20" id="gs" step="2">Green</p>
+ <p id="gv">Value : 10</p>
+ 
+ <p><input type="range" oninput="colorChange()" min="0" max="255" value="20" id="bs" step="2">Blue</p>
+ <p id="bv">Value : 10</p>
 
-        <div style="display: inline-table;">
-            <centre>
-        <h4>GREEN</h4>
-        <input type="range" id="val1" value="40">
-            </centre>
-        <br>
-        <p><span id="demo1"></span></p>
-</div>
-      
-<div style="display: inline-table;">
-    <centre>
-            <h4>BLUE</h4>
-            <input type="range" id="val2" value="30">
-            </centre>
-          <br>
-            <p><span id="demo2"></span></p>
-        </div>
-
-    </centre>
-
-            <script src="color.js"></script>
+ <script src="color.js"></script>
 </body>
 </html>

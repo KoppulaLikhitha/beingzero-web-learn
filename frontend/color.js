@@ -1,35 +1,22 @@
+function colorChange(){
 
-var sli=document.getElementById("val");
+    let a=document.getElementById("pcolor");
 
-var ou=document.getElementById("demo");
+    let r=document.getElementById("rs");
+    let g=document.getElementById("gs");
+    let b=document.getElementById("bs");
 
-ou.innerHTML=sli.value;
+    let p=document.getElementById("rv");
+    let q=document.getElementById("gv");
+    let st=document.getElementById("bv");
 
-sli.oninput =function(){
-    ou.innerHTML=this.value;
+    let s="rgb(" + r.value + "," + g.value +","+ b.value +")";
+
+    a.innerHTML=s;
+    a.style.backgroundColor = s;
+
+    p.innerHTML= "Value : " + r.value;
+    q.innerHTML= "Value : " +g.value;
+     st.innerHTML= "Value : " +b.value;
+
 }
-
-var sli1=document.getElementById("val1");
-
-var ou1=document.getElementById("demo1");
-
-ou1.innerHTML=sli1.value;
-
-sli1.oninput =function(){
-    ou1.innerHTML=this.value;
-}
-
-var sli2=document.getElementById("val2");
-
-var ou2=document.getElementById("demo2");
-
-ou2.innerHTML=sli2.value;
-
-sli2.oninput =function(){
-    ou2.innerHTML=this.value;
-}
-
-
-var ou3=document.getElementById("cli");
-
-ou3.innerHTML=sli.value+ "  " + sli1.value +"  "+ sli2.value ;
