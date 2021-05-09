@@ -44,6 +44,12 @@ app.get("/register",function(req,res)
     res.sendFile(e);
 })
 
+app.get("/piechart",function(req,res)
+{
+    let f=__dirname+"/frontend/piechart.html";
+    res.sendFile(f);
+})
+
 // Heroku will automatically set an environment variable called PORT
 const PORT = process.env.PORT || 3000;
  
