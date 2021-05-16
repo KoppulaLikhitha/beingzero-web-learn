@@ -58,7 +58,67 @@ app.get("/todo",function(req,res)
     res.sendFile(g);
 })
 
+let books=[];
 
+app.post('/book',(req,res) => 
+{
+ const book=req.body;
+ console.log(book);
+books.push(book);
+res.send('Book is added');
+
+
+});
+
+app.get('/books', (req, res) => {
+    res.json(books);
+});
+
+
+
+app.get('/book/:bookid', (req, res) => {
+    const bookid= req.params.bookid;
+
+    for (let book of books) {
+        if (book.bookid === bookid) {
+            res.json(book);
+            return;
+        }
+    }
+
+    res.status(404).send('Book not found');
+});
+
+
+app.delete('/book/:bookid', (req, res) => {
+    
+    const bookid = req.params.bookid;
+
+    books = books.filter(i => {
+        if (i.bookid !== bookid) {
+            return true;
+        }
+        return false;
+    });
+
+    res.send('Book is deleted');
+});
+
+
+app.post('/book/:bookid', (req, res) => {
+
+    const bookid = req.params.bookid;
+    const newBook = req.body;
+
+    for (let i = 0; i < books.length; i++) {
+        let book = books[i]
+        if (book.bookid === bookid) {
+            books[i] = newBook;
+        }
+    }
+
+    res.send('Book is edited');
+});
 
 // Heroku will automatically set an environment variable called PORT
 const PORT = process.env.PORT || 3000;
