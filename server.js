@@ -1,46 +1,52 @@
 const express = require('express');
- 
+const path = require('path');
 const app = express();
 const bodyparser= require('body-parser');
 
 
 const mongoose = require('mongoose');
 const courselib = require('./backend/lib/courselib');
-const dbconnect = require('./backend/db/dbconnect');
-const coursemodel = require('./backend/models/coursemodel');
+
  
 app.use(express.static(__dirname+"/frontend"));
+app.use(express.static(path.join(__dirname, "static")));
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({extended : false}));
 
-
-//var coursemodel = require('./backend/models/coursemodel');
-//const ap = express.Router();
-//ap.use('/course',coursemodel);
-
-
-dbconnect.connect();
 
 const password=process.env.Mongo_atlas_password;
 const connectionString="mongodb+srv://likki:"+password+"@cluster0.u1hbb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-mongoose.connect(connectionString,{useNewUrlParser : true});
-mongoose.connection.on('connected',function(){
-  console.log("Database Connected");
-  })
 
-  app.get("/courses",courselib.createcourse);
+mongoose.connect(connectionString, { useFindAndModify: false });
+  var db = mongoose.connection;
+db.on('connected', function () {
+console.log('MongoDB connected!');
+});
+
+db.on('error', function (error) {
+console.error('Error in MongoDb connection: ' + error);
+});
+
+db.on('disconnected', function () {
+console.log('MongoDB disconnected!');
+});
+
+app.get("/crud", courselib.getall);
+app.delete("/crud/:idd", courselib.deleteone);
+app.put("/crud/:idd", courselib.update);
+app.post("/crud",courselib.addnewone);
+
 
 app.get("/newcrud",function(req,res)
 {
     res.sendFile(__dirname + "/frontend/newcrud.html");
 })
 
-app.get("/crud",function(req,res)
+app.get("/crudd",function(req,res)
 {
-    res.sendFile(__dirname + "frontend/crud.html");
+    res.sendFile(__dirname + "/frontend/crud.html");
 })
+
 app.get("/", function(req, res){
     res.send("Welcome to Likhitha's Basic Site");
 })
