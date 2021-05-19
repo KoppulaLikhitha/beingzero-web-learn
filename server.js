@@ -1,11 +1,46 @@
 const express = require('express');
  
 const app = express();
+const bodyparser= require('body-parser');
+
+
+const mongoose = require('mongoose');
+const courselib = require('./backend/lib/courselib');
+const dbconnect = require('./backend/db/dbconnect');
+const coursemodel = require('./backend/models/coursemodel');
  
 app.use(express.static(__dirname+"/frontend"));
 app.use(express.urlencoded({extended : true}));
+app.use(express.json());
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended : false}));
 
 
+//var coursemodel = require('./backend/models/coursemodel');
+//const ap = express.Router();
+//ap.use('/course',coursemodel);
+
+
+dbconnect.connect();
+
+const password=process.env.Mongo_atlas_password;
+const connectionString="mongodb+srv://likki:"+password+"@cluster0.u1hbb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+mongoose.connect(connectionString,{useNewUrlParser : true});
+mongoose.connection.on('connected',function(){
+  console.log("Database Connected");
+  })
+
+  app.get("/courses",courselib.createcourse);
+
+app.get("/newcrud",function(req,res)
+{
+    res.sendFile(__dirname + "/frontend/newcrud.html");
+})
+
+app.get("/crud",function(req,res)
+{
+    res.sendFile(__dirname + "frontend/crud.html");
+})
 app.get("/", function(req, res){
     res.send("Welcome to Likhitha's Basic Site");
 })
@@ -19,7 +54,7 @@ app.get("/resume", function(req, res){
 
 app.get("/google",function(req,res){
     let a=__dirname + "/frontend/google.html";
-    res.sendFile(a);
+    res.sendFile(a)
 })
 
 app.get("/apple",function(req,res)
@@ -57,6 +92,7 @@ app.get("/todo",function(req,res)
     let g=__dirname+"/frontend/todo.html";
     res.sendFile(g);
 })
+
 
 let books=[];
 
