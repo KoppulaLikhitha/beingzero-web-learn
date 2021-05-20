@@ -46,6 +46,12 @@ app.get("/newcrud",function(req,res)
     res.sendFile(__dirname + "/frontend/newcrud.html");
 })
 
+app.get("/tambola",fuction(req,res)
+{
+    res.sendFile(__dirname + "/frontend/tambola.html");
+})
+
+
 app.get("/crudd",function(req,res)
 {
     res.sendFile(__dirname + "/frontend/crud.html");

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambola Game</title>
+</head>
+<body>
+    <center>
+        <div id="container">
+            <div id="header">
+                 <h1>Tambola game by Likhitha</h1> 
+            </div>
+            <div id="content">
+                <table border="1" id="lotto">
+                    <tbody>
+                        <tr>
+                            <td class="normal" id="cell00">&nbsp;</td>
+                            <td class="normal" id="cell01">&nbsp;</td>
+                            <td class="normal" id="cell02">&nbsp;</td>
+                            <td class="red" id="cell03">&nbsp;</td>
+                        
+                        </tr>
+                        <tr>
+                            <td class="normal" id="cell10">&nbsp;</td>
+                            <td class="normal" id="cell11">&nbsp;</td>
+                            <td class="normal" id="cell12">&nbsp;</td>
+                            <td class="red" id="cell13">&nbsp;</td>
+                        
+                        </tr>
+                        <tr>
+                            <td class="normal" id="cell20">&nbsp;</td>
+                            <td class="normal" id="cell21">&nbsp;</td>
+                            <td class="normal" id="cell22">&nbsp;</td>
+                            <td class="red" id="cell23">&nbsp;</td>
+                           
+                        </tr>
+                        
+                        <tr>
+                            <td class="normal" id="cell30">&nbsp;</td>
+                            <td class="normal" id="cell31">&nbsp;</td>
+                            <td class="normal" id="cell32">&nbsp;</td>
+                            <td class="red" id="cell33">&nbsp;</td>
+                           
+                        </tr>
+                        
+                    
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <input id="btn" type="button" value="Re-generate Numbers" />
+</center>
+
+<script>
+
+var btn = document.getElementById('btn');
+
+btn.addEventListener('click', UpdateTable);
+
+
+// Set the max length of random number 
+// and the max length
+var maxLength = 4;
+
+// Returns a random number
+function CreateLottoValues() {
+    return Math.floor(Math.random() * 4 + 1);
+}
+
+//create table
+function UpdateTable() {
+
+    for (var i = 0; i < maxLength; i++) {
+        for (var j = 0; j < maxLength; j++) {
+            tmp = 'cell' + i + j;
+            document.getElementById(tmp).innerHTML = CreateLottoValues();
+        }
+    }
+}
+
+UpdateTable();
+
+</script>
+</body>
+</html>
