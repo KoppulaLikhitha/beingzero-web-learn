@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const bodyparser= require('body-parser');
+const config = require('./backend/config/config');
+const dbConnectLib = require('./backend/lib/dbConnectLib');
 
 
 const mongoose = require('mongoose');
@@ -14,22 +16,24 @@ app.use(express.urlencoded({extended : true}));
 app.use(express.json());
 
 
-const password=process.env.Mongo_atlas_password;
-const connectionString="mongodb+srv://likki:"+password+"@cluster0.u1hbb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+dbConnectLib.connect();
 
-mongoose.connect(connectionString, { useFindAndModify: false });
-  var db = mongoose.connection;
-db.on('connected', function () {
-console.log('MongoDB connected!');
-});
+//const password=process.env.Mongo_atlas_password;
+//const connectionString="mongodb+srv://likki:"+password+"@cluster0.u1hbb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
-db.on('error', function (error) {
+// mongoose.connect(config.mongoConnectionStrig, { useFindAndModify: false });
+   //var db = mongoose.connection;
+// db.on('connected', function () {
+// console.log('MongoDB connected!');
+// });
+
+/*db.on('error', function (error) {
 console.error('Error in MongoDb connection: ' + error);
 });
 
 db.on('disconnected', function () {
 console.log('MongoDB disconnected!');
-});
+});*/
 
 app.get("/crud", courselib.getall);
 app.delete("/crud/:idd", courselib.deleteone);
@@ -163,9 +167,9 @@ app.post('/book/:bookid', (req, res) => {
 });
 
 // Heroku will automatically set an environment variable called PORT
-const PORT = process.env.PORT || 3000;
+//const PORT = process.env.PORT || 3000;
  
 // Start the server
-app.listen(PORT, function(){
-    console.log("Server Starting running on http://localhost:"+PORT);
+app.listen(config.webPort, function(){
+    console.log("Server Starting running on http://localhost:"+config.webPort);
 })
