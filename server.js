@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended : true}));
 app.use(express.json());
 
 
-dbConnectLib.connect();
+//dbConnectLib.connect();
 
 //const password=process.env.Mongo_atlas_password;
 //const connectionString="mongodb+srv://likki:"+password+"@cluster0.u1hbb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -35,10 +35,10 @@ db.on('disconnected', function () {
 console.log('MongoDB disconnected!');
 });*/
 
-app.get("/crud", courselib.getall);
+/*app.get("/crud", courselib.getall);
 app.delete("/crud/:idd", courselib.deleteone);
 app.put("/crud/:idd", courselib.update);
-app.post("/crud",courselib.addnewone);
+app.post("/crud",courselib.addnewone);*/
 
 
 app.get("/newcrud",function(req,res)
@@ -46,7 +46,7 @@ app.get("/newcrud",function(req,res)
     res.sendFile(__dirname + "/frontend/newcrud.html");
 })
 
-app.get("/tambola",fuction(req,res)
+app.get("/tambola",function(req,res)
 {
     res.sendFile(__dirname + "/frontend/tambola.html");
 })
@@ -173,9 +173,9 @@ app.post('/book/:bookid', (req, res) => {
 });
 
 // Heroku will automatically set an environment variable called PORT
-//const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
  
 // Start the server
-app.listen(config.webPort, function(){
-    console.log("Server Starting running on http://localhost:"+config.webPort);
+app.listen(PORT, function(){
+    console.log("Server Starting running on http://localhost:"+PORT);
 })
